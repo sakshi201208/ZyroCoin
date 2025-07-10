@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MaceMc Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/1385282079914332230/1390637967080554547/channels4_profile.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --main-bg1: #232526;
+      --main-bg2: #414345;
+      --accent: #5865f2;
+      --text: #fff;
+      --subtext: #b0b3b8;
+      --radius: 18px;
+      --shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(rgba(15, 32, 39, 0.85), rgba(44, 83, 100, 0.85)),
+                  url('image/image.jpeg') center/cover no-repeat fixed;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #falling-dots {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      display: block;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 48px;
+      z-index: 2;
+      position: relative;
+      animation: fadeInDown 1s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .welcome-message {
+      font-size: 2.8rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      background: linear-gradient(90deg, #5865f2, #00c3ff, #2c5364, #fff, #5865f2);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px #5865f2) drop-shadow(0 0 24px #00c3ff);
+      margin-bottom: 20px;
+      animation: welcomeGradient 3s linear infinite;
+    }
+
+    @keyframes welcomeGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      margin-bottom: 18px;
+      transition: transform 0.3s;
+      background: #232526;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px;
+      padding: 40px 20px 0;
+      z-index: 2;
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .section {
+      background: rgba(35, 39, 47, 0.92);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 24px;
+      flex: 1 1 260px;
+      max-width: 320px;
+      text-align: center;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .section:hover {
+      transform: translateY(0) scale(1.05);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo i {
+      font-size: 6rem;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .section .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: 0.2s ease;
+    }
+
+    .section .btn:hover {
+      background: #fff;
+      color: var(--accent);
+      transform: scale(1.07);
+    }
+
+    .about-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .about-desc {
+      color: var(--subtext);
+      font-size: 1.08rem;
+      line-height: 1.6;
+    }
+
+    .youtube .logo i { color: #ff0000; }
+    .discord .logo i { color: #5865f2; }
+    .instagram .logo i { color: #e1306c; }
+    .facebook .logo i { color: #1877f3; }
+
+    footer {
+      margin-top: 48px;
+      padding: 24px 0 12px;
+      color: var(--subtext);
+      font-size: 0.98rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-message {
+        font-size: 2rem;
+      }
+
+      .profile-img {
+        width: 90px;
+        height: 90px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-message {
+        font-size: 1.5rem;
+      }
+
+      .section {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="falling-dots"></canvas>
+
+  <header>
+    <div class="welcome-message">MaceMc Official Website</div>
+    <img class="profile-img" src="https://cdn.discordapp.com/attachments/1385282079914332230/1390637967080554547/channels4_profile.jpg" alt="MaceMc Logo">
+  </header>
+
+  <div class="sections">
+    <section class="section youtube">
+      <div class="logo"><i class="fab fa-youtube"></i></div>
+      <div class="about">
+        <div class="about-title">YouTube</div>
+        <div class="about-desc">
+          Dive into my world of videos! Tutorials, gaming, vlogs, and streams await.<br>
+          Subscribe and join the MaceMc family!
+        </div>
+        <a class="btn" href="#" target="_blank">Subscribe</a>
+      </div>
+    </section>
+
+    <section class="section discord">
+      <div class="logo"><i class="fab fa-discord"></i></div>
+      <div class="about">
+        <div class="about-title">Discord</div>
+        <div class="about-desc">
+          Join our active Discord! Chat, events, giveaways, updates, and friends.
+        </div>
+        <a class="btn" href="https://discord.gg/rR6AWZh569" target="_blank" rel="noopener">Join Now</a>
+      </div>
+    </section>
+
+    <section class="section instagram">
+      <div class="logo"><i class="fab fa-instagram"></i></div>
+      <div class="about">
+        <div class="about-title">Instagram</div>
+        <div class="about-desc">
+          Behind the scenes, stories, reels, and more. Follow us for daily content.
+        </div>
+        <a class="btn" href="#" target="_blank">Follow</a>
+      </div>
+    </section>
+
+    <section class="section facebook">
+      <div class="logo"><i class="fab fa-facebook"></i></div>
+      <div class="about">
+        <div class="about-title">Facebook</div>
+        <div class="about-desc">
+          Like our page to stay in the loop! Events, news, and highlights await you.
+        </div>
+        <a class="btn" href="#" target="_blank">Like Page</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 MaceMc Network
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll(".section");
+      sections.forEach((section, i) => {
+        setTimeout(() => {
+          section.style.opacity = "1";
+          section.style.transform = "translateY(0)";
+        }, i * 300 + 300);
+      });
+    });
+
+    (function () {
+      const canvas = document.getElementById("falling-dots");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      let dots = Array.from({ length: 70 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2 + 1,
+        speed: Math.random() * 1.2 + 0.5,
+        alpha: Math.random() * 0.4 + 0.3
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        dots.forEach(dot => {
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${dot.alpha})`;
+          ctx.shadowColor = "#ffffff";
+          ctx.shadowBlur = 4;
+          ctx.fill();
+          dot.y += dot.speed;
+          if (dot.y > height) {
+            dot.y = 0;
+            dot.x = Math.random() * width;
+          }
+        });
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener("resize", () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        // Recreate dots to fit new size
+        dots = Array.from({ length: 70 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2 + 1,
+          speed: Math.random() * 1.2 + 0.5,
+          alpha: Math.random() * 0.4 + 0.3
+        }));
+      });
+
+      animate();
+    })();
+  </script>
+</body>
+</html>

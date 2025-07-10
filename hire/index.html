@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hire Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image:
+        url('5559852.jpg'),
+        linear-gradient(-45deg, rgba(224,231,255,0.85), rgba(165,180,252,0.85), rgba(240,246,255,0.85), rgba(199,210,254,0.85));
+      background-size: cover, 400% 400%;
+      background-position: center, 0% 50%;
+      background-repeat: no-repeat, no-repeat;
+      animation: gradientBG 12s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: center, 0% 50%;}
+      50% {background-position: center, 100% 50%;}
+      100% {background-position: center, 0% 50%;}
+    }
+    .form-container {
+      max-width: 410px;
+      width: 96vw;
+      margin: 32px auto;
+      background: rgba(255,255,255,0.98);
+      padding: 32px 28px 24px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(30, 64, 175, 0.13), 0 1.5px 8px rgba(30, 64, 175, 0.07);
+      border: 1.5px solid #c7d7fa;
+      backdrop-filter: blur(2px);
+    }
+    .form-container h2 {
+      text-align: center;
+      color: #1e40af;
+      margin-bottom: 6px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .form-container p {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 24px;
+      font-size: 1.04rem;
+    }
+    form label {
+      font-weight: 600;
+      margin-bottom: 7px;
+      display: block;
+      color: #1e3a8a;
+      letter-spacing: 0.01em;
+      font-size: 1.04rem;
+      transition: color 0.2s;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="number"],
+    form textarea {
+      width: 100%;
+      padding: 11px 14px;
+      margin-bottom: 20px;
+      border: 1.5px solid #b6d0fa;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f4f8ff;
+      transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      color: #1e293b;
+      font-family: inherit;
+      box-shadow: 0 1px 2px rgba(30, 64, 175, 0.03);
+    }
+    form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    form input[type="number"]::-webkit-inner-spin-button,
+    form input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    form input:focus,
+    form textarea:focus {
+      border-color: #2563eb;
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 0 2px #dbeafe, 0 2px 8px #2563eb22;
+      transform: scale(1.01);
+    }
+    .budget-group {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+    .budget-group span {
+      font-size: 1.25rem;
+      color: #2563eb;
+      font-weight: bold;
+      background: #e0e7ff;
+      padding: 0 14px;
+      border-radius: 8px 0 0 8px;
+      border: 1.5px solid #b6d0fa;
+      border-right: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .budget-group input[type="number"] {
+      border-radius: 0 8px 8px 0;
+      border: 1.5px solid #b6d0fa;
+      border-left: none;
+      background: #f4f8ff;
+      height: auto;
+      padding: 11px 14px;
+      margin-bottom: 0;
+      font-size: 1rem;
+      flex: 1;
+    }
+    .project-section {
+      background: #f8fafc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.06);
+      padding: 18px 14px 10px 14px;
+      margin-bottom: 18px;
+      margin-top: 8px;
+      border: 1.5px solid #e0e7ff;
+    }
+    .project-section label {
+      color: #1e40af;
+      font-weight: 600;
+      font-size: 1.06rem;
+      margin-bottom: 7px;
+    }
+    .project-section textarea {
+      background: #f4f8ff;
+      border: 1.5px solid #b6d0fa;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      margin-top: 7px;
+      min-height: 90px;
+      resize: vertical;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 2px rgba(30, 64, 175, 0.03);
+    }
+    .project-section textarea:focus {
+      border-color: #2563eb;
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 0 2px #dbeafe, 0 2px 8px #2563eb22;
+      transform: scale(1.01);
+    }
+    form button {
+      background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+      color: #fff;
+      border: none;
+      padding: 13px 0;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1.13rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.10);
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+    form button:hover, form button:focus {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+      box-shadow: 0 4px 16px rgba(30, 64, 175, 0.16);
+      transform: translateY(-2px) scale(1.01);
+      outline: none;
+    }
+    @media (max-width: 600px) {
+      .form-container {
+        max-width: 99vw;
+        padding: 18px 4vw 14px 4vw;
+        margin: 12px auto;
+        border-radius: 12px;
+      }
+      form label {
+        font-size: 1rem;
+      }
+      form button {
+        font-size: 1rem;
+        padding: 11px 0;
+      }
+      .budget-group span, .budget-group input[type="number"] {
+        height: 38px;
+        font-size: 1.1rem;
+      }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeInUp 0.7s cubic-bezier(.4,1.7,.7,1) forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container fade-in">
+    <h2>Hire Me</h2>
+    <p>Fill out the form and I'll get back to you soon!</p>
+    <form action="https://api.web3forms.com/submit" method="POST"> 
+      <input type="hidden" name="access_key" value="cd828d96-b605-4f1d-90d9-48f968bc1d10">
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="you@email.com">
+
+      <label for="budget">Budget:</label>
+      <div class="budget-group">
+        <span>₹</span>
+        <input type="number" id="budget" name="budget" min="0" required placeholder="e.g. 500">
+      </div>
+
+      <label for="discord">Discord ID:</label>
+      <input type="text" id="discord" name="discord" required placeholder="username#1234">
+
+      <div class="project-section">
+        <label for="project" style="display:flex;align-items:center;gap:7px;">
+          <svg width="20" height="20" fill="none" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" rx="4" fill="#e0e7ff"/><path d="M6 8h8M6 12h5" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Describe your project:
+        </label>
+        <textarea id="project" name="project" required placeholder="Tell me about your project..."></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div id="form-message" style="display:none; text-align:center; margin-top:18px; color:#16a34a; font-weight:600;">
+      Thank you! Your submission has been received.
+    </div>
+  </div>
+</body>
+</html>

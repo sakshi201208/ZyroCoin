@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maze Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111 60%, #1a2980 100%);
+            color: #fff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            /* Remove flex centering for natural scroll */
+        }
+        .maze-panel {
+            background: rgba(30, 30, 30, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px #0008;
+            padding: 32px 24px 24px 24px;
+            margin: 32px auto;
+            display: inline-block;
+            min-width: 320px;
+            max-width: 98vw;
+        }
+        #mazeCanvas {
+            background: #000;
+            border: 2px solid #fff;
+            margin: 20px 0;
+            transition: width 0.3s, height 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .centered {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .slider-label {
+            margin-right: 10px;
+        }
+        input[type="range"] {
+            width: 200px;
+        }
+        .device-select {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 20px;
+        }
+        .device-radio {
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .device-radio input[type="radio"] {
+            accent-color: #00bfff;
+            margin-right: 6px;
+            width: 18px;
+            height: 18px;
+        }
+        #generateBtn {
+            font-size: 1.3em;
+            padding: 14px 40px;
+            border-radius: 10px;
+            background: #00bfff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #00bfff44;
+            letter-spacing: 1px;
+        }
+        #generateBtn:hover {
+            background: #0099cc;
+            box-shadow: 0 4px 16px #00bfff88;
+        }
+        .credit {
+            color: #aaa;
+            font-size: 1em;
+            margin-top: 30px;
+            margin-bottom: 0;
+        }
+        @media (max-width: 600px) {
+            #mazeCanvas { width: 98vw !important; height: 98vw !important; max-width: 98vw; max-height: 98vw; }
+            input[type="range"] { width: 120px; }
+            .maze-panel { padding: 10vw 2vw 2vw 2vw; min-width: unset; }
+        }
+    </style>
+</head>
+<body>
+    <div class="maze-panel">
+        <h1>Maze Game</h1>
+        <canvas id="mazeCanvas" width="500" height="500"></canvas>
+        <div class="centered">
+            <span class="slider-label">Maze Size:</span>
+            <input type="range" id="sizeSlider" min="10" max="40" value="20">
+            <span id="sizeValue">20</span> x <span id="sizeValue2">20</span>
+        </div>
+        <div class="device-select">
+            <label class="device-radio">
+                <input type="radio" name="device" id="pcRadio" value="pc" checked>
+                <span title="PC">💻 PC</span>
+            </label>
+            <label class="device-radio">
+                <input type="radio" name="device" id="phoneRadio" value="phone">
+                <span title="Phone">📱 Phone</span>
+            </label>
+        </div>
+        <div class="centered">
+            <button id="generateBtn">Play</button>
+        </div>
+        <p>
+            <b>Tips:</b> <br>
+            Use arrow keys or swipe on the maze to move the blue dot.<br>
+            Reach the red square to win!
+        </p>
+        <p class="credit">
+            <b>Made by Yuvraj</b><br>
+            <span style="font-size:0.95em;">Discord: yuvrajsingh0321</span>
+        </p>
+    </div>
+    <script src="maze.js"></script>
+    <script>
+        // Slider controls
+        const sizeSlider = document.getElementById('sizeSlider');
+        const sizeValue = document.getElementById('sizeValue');
+        const sizeValue2 = document.getElementById('sizeValue2');
+        sizeSlider.oninput = function() {
+            sizeValue.textContent = this.value;
+            sizeValue2.textContent = this.value;
+        };
+
+        // Aspect ratio controls
+        const canvas = document.getElementById('mazeCanvas');
+        const pcRadio = document.getElementById('pcRadio');
+        const phoneRadio = document.getElementById('phoneRadio');
+        function setAspect() {
+            if (pcRadio.checked) {
+                canvas.width = 500;
+                canvas.height = 500;
+                canvas.style.width = "500px";
+                canvas.style.height = "500px";
+            } else {
+                canvas.width = 320;
+                canvas.height = 570;
+                canvas.style.width = "320px";
+                canvas.style.height = "570px";
+            }
+            // Redraw maze with new aspect
+            if (typeof setup === "function") setup();
+        }
+        pcRadio.onchange = setAspect;
+        phoneRadio.onchange = setAspect;
+        // Set initial aspect and maze on page load
+        setAspect();
+        if (typeof setup === "function") setup();
+    </script>
+</body>
+</html>
