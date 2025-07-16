@@ -6,6 +6,14 @@ const { UserEconomy, Warning, GuildSettings, JailedUser, Lottery, ActiveGame,
   getJailedUsers, jailUser, freeUser, getLottery, 
   getActiveGame, createActiveGame, deleteActiveGame } = require('./database');
   const express = require('express');
+// Catch unhandled errors & promise rejections
+process.on('uncaughtException', (err) => {
+  console.error('🚨 Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.error('🚨 Unhandled Rejection:', err);
+});
 
 // Initialize client with all required intents
 const client = new Client({
